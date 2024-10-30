@@ -47,7 +47,7 @@ export const Avatar: FC<IAvatarProps> = props => {
 
   return (
     <div className={cx(styles({ size }), className)} data-testid={'avatar'} {...restProps}>
-      <img className={'h-full w-full object-cover'} src={src} />
+      <img className={'h-full w-full object-cover'} loading={'lazy'} src={src} />
     </div>
   )
 }

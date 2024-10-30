@@ -7,6 +7,7 @@ export const REPOSITORIES_LIST = gql`
       edges {
         node {
           ... on Repository {
+            id
             name
             stargazerCount
             updatedAt
