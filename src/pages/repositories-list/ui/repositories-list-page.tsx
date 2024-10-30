@@ -6,6 +6,11 @@ export interface IRepositoriesListPageProps {}
 
 export const RepositoriesListPage: FC<IRepositoriesListPageProps> = () => {
   const { data, loading, error } = useRepositoriesListModel()
-  console.log('error: ', error)
-  return <section>RepositoriesList</section>
+
+  return (
+    <section className={'page-wrapper'}>
+      {loading && <div>Loading...</div>}
+      {error && <div>Error</div>}
+    </section>
+  )
 }
