@@ -22,7 +22,7 @@ export const useRepositoryListModel = () => {
   const setRepositoryList = useRepositoryListStore(state => state.setRepositoryList)
   const setTotalRepositories = useRepositoryListStore(state => state.setTotalRepositories)
   const currentPage = useRepositoryListStore(state => state.currentPage)
-  const searchQuery = useRepositoryListStore(state => state.searchQuery)
+  const searchQuery = localStorage.getItem('searchQuery') || ''
 
   const storedCursorsString = localStorage.getItem('cursors')
   const cursors = storedCursorsString ? JSON.parse(storedCursorsString) : {}

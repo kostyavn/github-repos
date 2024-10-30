@@ -1,5 +1,6 @@
 import { isEmpty } from 'ramda'
 import { Fragment, type FC, useEffect } from 'react'
+import { useDebounce } from 'react-use'
 
 import { useRepositoryListModel, useRepositoryListStore, RepositoryCard } from '@entities/repository'
 
@@ -26,18 +27,26 @@ export const RepositoryListPage: FC<IRepositoryListPageProps> = () => {
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.currentTarget.value
 
-    localStorage.setItem('currentPage', '1') // Сбрасываем страницу на 1
-    localStorage.setItem('cursors', '{}') // Сбрасываем курсоры
-    localStorage.setItem('searchQuery', value) // Обновляем состояние поиска в localStorage
-
-    setSearchQuery(value) // Обновляем состояние поиска в store
-    setCurrentPage(1) // Сбрасываем страницу на первую
+    setSearchQuery(value)
+    setCurrentPage(1)
   }
 
   const handlePaginationChange = (newPage: number) => {
     setCurrentPage(newPage)
     localStorage.setItem('currentPage', newPage.toString())
   }
+
+  useDebounce(
+    () => {
+      localStorage.setItem('searchQuery', searchQuery || '')
+      localStorage.setItem('currentPage', '1')
+      localStorage.setItem('cursors', '{}')
+
+      setCurrentPage(1)
+    },
+    300,
+    [searchQuery]
+  )
 
   useEffect(() => {
     localStorage.setItem('currentPage', currentPage.toString())
