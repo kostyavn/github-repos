@@ -31,7 +31,9 @@ export namespace Repository {
 
   export type ListStore = {
     repositoryList: Array<Node>
+    totalRepositories: number
     setRepositoryList: (repositoryList: Array<Node>) => void
+    setTotalRepositories: (totalRepositories: number) => void
   }
 
   export type Store = {

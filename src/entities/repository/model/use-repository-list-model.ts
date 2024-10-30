@@ -20,14 +20,17 @@ type RepositoryListResponse = {
 
 export const useRepositoryListModel = () => {
   const setRepositoryList = useRepositoryListStore(state => state.setRepositoryList)
+  const setTotalRepositories = useRepositoryListStore(state => state.setTotalRepositories)
 
   return useQuery<RepositoryListResponse>(api.query.REPOSITORIES_LIST, {
-    variables: { query: 'start>4', first: 10 },
+    variables: { query: 'stars>4', first: 10 },
     onCompleted: response => {
       const { search } = response
-      const { edges } = search
+      const { edges, repositoryCount } = search
 
       setRepositoryList(edges.map(ed => ed.node))
+
+      setTotalRepositories(repositoryCount)
     }
   })
 }

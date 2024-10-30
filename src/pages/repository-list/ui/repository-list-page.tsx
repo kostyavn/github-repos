@@ -4,17 +4,22 @@ import { Fragment, type FC } from 'react'
 import { useRepositoryListModel, useRepositoryListStore, RepositoryCard } from '@entities/repository'
 
 import { Loader, Pagination, Result } from '@shared/elements/ui'
+import { DEFAULT_PAGE_LIMIT } from '@shared/lib/constants'
 
 export interface IRepositoryListPageProps {}
 
 export const RepositoryListPage: FC<IRepositoryListPageProps> = () => {
   const { loading, error } = useRepositoryListModel()
+
   const repositoryList = useRepositoryListStore(state => state.repositoryList)
+  const totalRepositories = useRepositoryListStore(state => state.totalRepositories)
 
   const shouldRender = !loading && !error
 
   return (
     <section className={'page-wrapper flex-center flex-col gap-y-3'}>
+      <input />
+
       {loading && <Loader />}
 
       {error && <Result message={<h1 className={'text-red-500'}>Something went wrong...</h1>} type={'error'} />}
@@ -30,9 +35,16 @@ export const RepositoryListPage: FC<IRepositoryListPageProps> = () => {
               <RepositoryCard key={repository.id} repository={repository} />
             ))}
           </ul>
-
-          <Pagination current={1} limit={10} totalPages={100} onChange={number => null} />
         </Fragment>
+      )}
+
+      {!error && totalRepositories > 10 && (
+        <Pagination
+          current={1}
+          limit={DEFAULT_PAGE_LIMIT}
+          totalPages={Math.ceil(totalRepositories / DEFAULT_PAGE_LIMIT)}
+          onChange={number => null}
+        />
       )}
     </section>
   )
