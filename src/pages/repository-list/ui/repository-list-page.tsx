@@ -1,5 +1,5 @@
 import { isEmpty } from 'ramda'
-import { Fragment, type FC } from 'react'
+import { Fragment, type FC, useEffect } from 'react'
 
 import { useRepositoryListModel, useRepositoryListStore, RepositoryCard } from '@entities/repository'
 
@@ -11,14 +11,41 @@ export interface IRepositoryListPageProps {}
 export const RepositoryListPage: FC<IRepositoryListPageProps> = () => {
   const { loading, error } = useRepositoryListModel()
 
-  const repositoryList = useRepositoryListStore(state => state.repositoryList)
-  const totalRepositories = useRepositoryListStore(state => state.totalRepositories)
+  const { repositoryList, totalRepositories, currentPage, searchQuery, setSearchQuery, setCurrentPage } =
+    useRepositoryListStore(state => ({
+      repositoryList: state.repositoryList,
+      totalRepositories: state.totalRepositories,
+      currentPage: state.currentPage,
+      searchQuery: state.searchQuery,
+      setSearchQuery: state.setSearchQuery,
+      setCurrentPage: state.setCurrentPage
+    }))
 
   const shouldRender = !loading && !error
 
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value
+    setSearchQuery(value) // Обновляем состояние поиска в store
+    setCurrentPage(1) // Сбрасываем страницу на 1
+    localStorage.setItem('currentPage', '1') // Сбрасываем страницу на 1
+    localStorage.setItem('cursors', '{}') // Сбрасываем курсоры
+  }
+
+  const handlePaginationChange = (newPage: number) => {
+    setCurrentPage(newPage)
+    localStorage.setItem('currentPage', newPage.toString())
+  }
+
+  useEffect(() => {
+    localStorage.setItem('currentPage', currentPage.toString())
+  }, [currentPage])
+
   return (
     <section className={'page-wrapper flex-center flex-col gap-y-3'}>
-      <input />
+      <input
+        value={searchQuery} // Устанавливаем значение из состояния
+        onChange={handleSearchChange}
+      />
 
       {loading && <Loader />}
 
@@ -30,7 +57,7 @@ export const RepositoryListPage: FC<IRepositoryListPageProps> = () => {
 
       {!isEmpty(repositoryList) && shouldRender && (
         <Fragment>
-          <ul className={'gird-cols-1 grid gap-3 lg:grid-cols-5 lg:grid-rows-2'}>
+          <ul className={'grid grid-cols-1 gap-3 lg:grid-cols-5 lg:grid-rows-2'}>
             {repositoryList.map(repository => (
               <RepositoryCard key={repository.id} repository={repository} />
             ))}
@@ -40,10 +67,10 @@ export const RepositoryListPage: FC<IRepositoryListPageProps> = () => {
 
       {!error && totalRepositories > 10 && (
         <Pagination
-          current={1}
+          current={currentPage}
           limit={DEFAULT_PAGE_LIMIT}
           totalPages={Math.ceil(totalRepositories / DEFAULT_PAGE_LIMIT)}
-          onChange={number => null}
+          onChange={handlePaginationChange}
         />
       )}
     </section>

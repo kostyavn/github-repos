@@ -32,8 +32,12 @@ export namespace Repository {
   export type ListStore = {
     repositoryList: Array<Node>
     totalRepositories: number
+    currentPage: number
+    searchQuery: string
     setRepositoryList: (repositoryList: Array<Node>) => void
     setTotalRepositories: (totalRepositories: number) => void
+    setCurrentPage: (page: number) => void
+    setSearchQuery: (query: string) => void
   }
 
   export type Store = {
