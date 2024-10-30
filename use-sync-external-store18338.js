@@ -1,4 +1,4 @@
-import{g as V}from"./copy-to-clipboard95604.js";import{r as E}from"./react95604.js";var y={exports:{}},w={},$={exports:{}},j={};/**
+import{g as V}from"./copy-to-clipboard18338.js";import{r as E}from"./react18338.js";var y={exports:{}},w={},$={exports:{}},j={};/**
  * @license React
  * use-sync-external-store-shim.production.min.js
  *
