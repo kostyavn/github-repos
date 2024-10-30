@@ -1,0 +1,58 @@
+{
+  "hash": "573b543a",
+  "configHash": "7e1a7d40",
+  "lockfileHash": "5d6661ce",
+  "browserHash": "9d4a8635",
+  "optimized": {
+    "react/jsx-dev-runtime": {
+      "src": "../../node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "562ed284",
+      "needsInterop": true
+    },
+    "@tanstack/react-router": {
+      "src": "../../node_modules/@tanstack/react-router/dist/esm/index.js",
+      "file": "@tanstack_react-router.js",
+      "fileHash": "945da01a",
+      "needsInterop": false
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "23ef4b73",
+      "needsInterop": true
+    },
+    "react-error-boundary": {
+      "src": "../../node_modules/react-error-boundary/dist/react-error-boundary.development.esm.js",
+      "file": "react-error-boundary.js",
+      "fileHash": "ff35720c",
+      "needsInterop": false
+    },
+    "@apollo/client": {
+      "src": "../../node_modules/@apollo/client/index.js",
+      "file": "@apollo_client.js",
+      "fileHash": "099ae27b",
+      "needsInterop": false
+    },
+    "@apollo/client/link/context": {
+      "src": "../../node_modules/@apollo/client/link/context/index.js",
+      "file": "@apollo_client_link_context.js",
+      "fileHash": "d845f110",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-2PVBJSN7": {
+      "file": "chunk-2PVBJSN7.js"
+    },
+    "chunk-SZVM5CFR": {
+      "file": "chunk-SZVM5CFR.js"
+    },
+    "chunk-R34ZLDMT": {
+      "file": "chunk-R34ZLDMT.js"
+    },
+    "chunk-5WRI5ZAA": {
+      "file": "chunk-5WRI5ZAA.js"
+    }
+  }
+}
