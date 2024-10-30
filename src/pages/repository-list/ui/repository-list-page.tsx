@@ -5,9 +5,9 @@ import { useRepositoryListModel, useRepositoryListStore, RepositoryCard } from '
 
 import { Loader, Result } from '@shared/elements/ui'
 
-export interface IRepositoriesListPageProps {}
+export interface IRepositoryListPageProps {}
 
-export const RepositoriesListPage: FC<IRepositoriesListPageProps> = () => {
+export const RepositoryListPage: FC<IRepositoryListPageProps> = () => {
   const { loading, error } = useRepositoryListModel()
   const repositoryList = useRepositoryListStore(state => state.repositoryList)
 

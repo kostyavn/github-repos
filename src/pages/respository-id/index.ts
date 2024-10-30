@@ -1,1 +1,1 @@
-export { RepositotyIdPage } from './ui/repositoty-id-page'
+export { RepositoryIdPage } from './ui/repository-id-page'

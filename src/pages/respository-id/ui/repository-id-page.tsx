@@ -8,9 +8,9 @@ import { Icon } from '@shared/elements/svg'
 import { Avatar, Loader, Result } from '@shared/elements/ui'
 import { DEFAULT_DATE_FORMAT } from '@shared/lib/constants'
 
-export interface IRepositotyIdPageProps {}
+export interface IRepositoryIdPageProps {}
 
-export const RepositotyIdPage: FC<IRepositotyIdPageProps> = () => {
+export const RepositoryIdPage: FC<IRepositoryIdPageProps> = () => {
   const { loading, error } = useRepositoryModel()
   const repository = useRepositoryStore(state => state.repository)
 
