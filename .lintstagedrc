@@ -1,0 +1,4 @@
+{
+  "*.{js,jsx,ts,tsx,json,md}": ["yarn code-check-file"],
+  "*.css": ["yarn style-check-file"]
+}
