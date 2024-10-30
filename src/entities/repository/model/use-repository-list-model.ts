@@ -40,7 +40,6 @@ export const useRepositoryListModel = () => {
       setRepositoryList(edges.map(ed => ed.node))
       setTotalRepositories(repositoryCount)
 
-      // Сохраняем курсор для текущей страницы
       if (currentPage > 1) {
         cursors[currentPage] = pageInfo.endCursor
         localStorage.setItem('cursors', JSON.stringify(cursors))

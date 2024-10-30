@@ -5,8 +5,8 @@ import { type Repository } from '../types'
 export const useRepositoryListStore = create<Repository.ListStore>(set => ({
   repositoryList: [],
   totalRepositories: 0,
-  currentPage: 1,
-  searchQuery: '',
+  currentPage: Number(localStorage.getItem('currentPage')) || 1,
+  searchQuery: localStorage.getItem('searchQuery') || '',
 
   setRepositoryList: repositories => set({ repositoryList: repositories }),
   setTotalRepositories: count => set({ totalRepositories: count }),

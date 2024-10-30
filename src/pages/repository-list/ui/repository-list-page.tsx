@@ -24,11 +24,12 @@ export const RepositoryListPage: FC<IRepositoryListPageProps> = () => {
   const shouldRender = !loading && !error
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value
-    setSearchQuery(value) // Обновляем состояние поиска в store
-    setCurrentPage(1) // Сбрасываем страницу на 1
+    const value = event.currentTarget.value
     localStorage.setItem('currentPage', '1') // Сбрасываем страницу на 1
     localStorage.setItem('cursors', '{}') // Сбрасываем курсоры
+    localStorage.setItem('searchQuery', searchQuery) // Обновляем состояние поиска в localStorage
+    setSearchQuery(value) // Обновляем состояние поиска в store
+    setCurrentPage(1) // Сбрасываем страницу на первую
   }
 
   const handlePaginationChange = (newPage: number) => {
