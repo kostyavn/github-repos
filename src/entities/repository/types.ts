@@ -9,6 +9,10 @@ export namespace Repository {
     name: string
   }
 
+  export type Language = {
+    name: string
+  }
+
   export type Node = {
     id: string
     name: string
@@ -18,9 +22,12 @@ export namespace Repository {
     owner: Owner
     primaryLanguage?: PrimaryLanguage
     description?: string
+    languages: {
+      edges: Array<{
+        node: Language
+      }>
+    }
   }
-
-  export type Type = {}
 
   export type ListStore = {
     repositoryList: Array<Node>

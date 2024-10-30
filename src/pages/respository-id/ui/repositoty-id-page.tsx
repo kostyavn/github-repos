@@ -78,10 +78,12 @@ export const RepositotyIdPage: FC<IRepositotyIdPageProps> = () => {
             GitHub Link
           </a>
 
-          {repository.description && <div>
-            <p>Description:</p>
-            <p>{repository.description}</p>
-          </div>}
+          {repository.description && (
+            <div>
+              <p>Description:</p>
+              <p>{repository.description}</p>
+            </div>
+          )}
         </div>
       )}
     </section>

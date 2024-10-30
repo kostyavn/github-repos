@@ -12,6 +12,14 @@ export const REPOSITORY_BY_ID = gql`
           avatarUrl
           url
         }
+        languages(first: 10) {
+          edges {
+            node {
+              id
+              name
+            }
+          }
+        }
         primaryLanguage {
           name
         }

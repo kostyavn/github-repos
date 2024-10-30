@@ -20,6 +20,14 @@ export const REPOSITORIES_LIST = gql`
             primaryLanguage {
               name
             }
+            languages(first: 10) {
+              edges {
+                node {
+                  id
+                  name
+                }
+              }
+            }
             description
           }
         }

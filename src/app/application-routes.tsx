@@ -1,5 +1,6 @@
 import { createRoute, createRootRoute, createRouter } from '@tanstack/react-router'
 
+import { NotFoundPage } from '@pages/not-found'
 import { RepositoriesListPage } from '@pages/repositories-list'
 import { RepositotyIdPage } from '@pages/respository-id'
 
@@ -27,6 +28,12 @@ const repositoryIdRoute = createRoute({
   component: RepositotyIdPage
 })
 
-const routeTree = rootRoute.addChildren([repositoriesListRoute, repositoryIdRoute])
+const notFoundRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  component: NotFoundPage,
+  path: '*'
+})
+
+const routeTree = rootRoute.addChildren([repositoriesListRoute, repositoryIdRoute, notFoundRoute])
 
 export const router = createRouter({ routeTree })

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from '@tanstack/react-router'
+import { Link } from '@tanstack/react-router'
 import { cx } from 'class-variance-authority'
 import dayjs from 'dayjs'
 import { type FC } from 'react'
