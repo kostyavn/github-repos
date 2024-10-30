@@ -1,4 +1,4 @@
-import{g as A}from"./copy-to-clipboard62901.js";var b={exports:{}},v={},j={exports:{}},r={};/**
+import{g as A}from"./copy-to-clipboard95604.js";var b={exports:{}},v={},j={exports:{}},r={};/**
  * @license React
  * react.production.min.js
  *
