@@ -29,7 +29,7 @@ export const useRepositoryListModel = () => {
 
   return useQuery<RepositoryListResponse>(api.query.REPOSITORIES_LIST, {
     variables: {
-      query: searchQuery || 'stars>4',
+      query: searchQuery || 'user:current',
       first: 10,
       after: currentPage > 1 ? cursors[currentPage - 1] : null // Заменили cursors[currentPage - 1] на cursors[currentPage]
     },
