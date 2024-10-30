@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "homepage": "https://kostyavn.github.io/github-repos/",
   "scripts": {
     "dev": "vite --host",
     "prod": "vite preview",
