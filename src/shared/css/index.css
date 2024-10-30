@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply m-0 box-border outline-none;
+}
+
+
+html {
+    @apply scroll-smooth;
+    @apply font-sans text-base;
+  
+    @media (min-width: 1536px) {
+      font-size: calc(16 * 100vw / 1440);
+    }
+  
+    @media (min-width: 1680px) {
+      font-size: calc(15 * 100vw / 1440);
+    }
+  
+    @media (min-width: 1920px) {
+      font-size: calc(14 * 100vw / 1440);
+    }
+  
+    @media (min-width: 2560px) {
+      font-size: calc(13 * 100vw / 1440);
+    }
+  
+    @media (min-width: 3840px) {
+      font-size: calc(12 * 100vw / 1440);
+    }
+  }
+
+  body {
+    @apply scroll-smooth;
+  
+    height: 100vh;
+  }
+  
+  #root {
+    height: 100%;
+  }
