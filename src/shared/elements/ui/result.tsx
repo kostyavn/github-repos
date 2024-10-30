@@ -17,7 +17,7 @@ export const Result: FC<IResultProps> = props => {
   const icon: IconType = type === 'empty' ? 'outline/WrenchIcon' : 'outline/FaceFrownIcon'
 
   return (
-    <section className={cx('page-wrapper flex-center flex-col gap-4', className)} {...restProps}>
+    <section className={cx('page-wrapper flex-center flex-col gap-4', className)} data-testid={'result'} {...restProps}>
       <Icon className={cx({ '': type === 'empty', 'text-red-500': type === 'error' })} icon={icon} size={'lg'} />
       {message}
     </section>
