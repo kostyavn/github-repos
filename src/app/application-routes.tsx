@@ -36,4 +36,4 @@ const notFoundRoute = createRoute({
 
 const routeTree = rootRoute.addChildren([repositoriesListRoute, repositoryIdRoute, notFoundRoute])
 
-export const router = createRouter({ routeTree })
+export const router = createRouter({ routeTree, basepath: '/github-repos', defaultPreload: 'intent' })
