@@ -11,6 +11,7 @@ export const hash = Math.floor(Math.random() * 90000) + 10000
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), svgr()],
+  base: '/github-repos/',
   build: {
     rollupOptions: {
       output: {
