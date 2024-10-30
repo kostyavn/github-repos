@@ -7,22 +7,10 @@ import { createArray } from '@shared/lib/create-array'
 
 export interface IPaginationProps {
   className?: ClassName
-  /**
-   * Номер текущей страницы
-   */
-  current: number
-  /**
-   * Максимальное количество отображаемых кнопок пагинации
-   */
-  limit: number
-  /**
-   * Количество страниц всего
-   */
-  totalPages: number
-  /**
-   * Хэндлер изменения текущей страницы
-   */
-  onChange: (page: number) => void
+  current: number // Номер текущей страницы
+  limit: number // Максимальное количество отображаемых кнопок пагинации
+  totalPages: number // Общее количество страниц
+  onChange: (page: number) => void // Хэндлер изменения текущей страницы
 }
 
 export const Pagination: FC<IPaginationProps> = props => {
@@ -32,41 +20,25 @@ export const Pagination: FC<IPaginationProps> = props => {
 
   const isFirstPage = current === 1
   const isLastPage = current === totalPages
-  let pages = []
+  const halfLimit = Math.floor(limit / 2)
 
-  if (totalPages <= limit) {
-    pages = createArray(totalPages, i => i + 1)
-  } else {
-    // Добавление первых двух страниц
-    pages.push(1, 2)
+  let startPage = Math.max(1, current - halfLimit)
+  let endPage = Math.min(totalPages, current + halfLimit)
 
-    // Если текущая страница находится далеко от второй страницы, добавьте "..."
-    if (current > 4) {
-      pages.push('...')
+  if (endPage - startPage + 1 < limit) {
+    if (startPage === 1) {
+      endPage = Math.min(totalPages, startPage + limit - 1)
+    } else if (endPage === totalPages) {
+      startPage = Math.max(1, endPage - limit + 1)
     }
-
-    // Определение границ для страниц вокруг текущей
-    const middleStart = Math.max(3, current - 1)
-    const middleEnd = Math.min(totalPages - 2, current + 1)
-
-    // Добавление средних страниц
-    pages.push(...createArray(middleEnd - middleStart + 1, i => middleStart + i))
-
-    // Если текущая страница находится далеко от предпоследней страницы, добавить "..."
-    if (current < totalPages - 3) {
-      pages.push('...')
-    }
-
-    // Добавление последних двух страниц
-    pages.push(totalPages - 1, totalPages)
   }
 
-  /**Переключение на предыдущую страницу */
+  const pages = createArray(endPage - startPage + 1, i => startPage + i)
+
   const handlePrevPage = () => {
     if (!isFirstPage) onChange(current - 1)
   }
 
-  /**Переключение на следующую страницу */
   const handleNextPage = () => {
     if (!isLastPage) onChange(current + 1)
   }
@@ -92,28 +64,20 @@ export const Pagination: FC<IPaginationProps> = props => {
 
         {pages.map(page => {
           const id = nanoid()
-          if (typeof page === 'number') {
-            const handleChangePage = () => onChange(page)
+          const handleChangePage = () => onChange(page)
 
-            return (
-              <li
-                key={id}
-                className={cx(`flex-center h-8 w-8 cursor-pointer rounded-lg bg-white font-bold`, {
-                  'bg-yellow-400 text-white': page === current,
-                  'hover:bg-gray-100': page !== current
-                })}
-                onClick={handleChangePage}
-              >
-                {page}
-              </li>
-            )
-          } else {
-            return (
-              <span className="mx-1" key={id}>
-                {page}
-              </span>
-            )
-          }
+          return (
+            <li
+              key={id}
+              className={cx(`flex-center h-8 w-8 cursor-pointer rounded-lg bg-white font-bold`, {
+                'bg-yellow-400 text-white': page === current,
+                'hover:bg-gray-100': page !== current
+              })}
+              onClick={handleChangePage}
+            >
+              {page}
+            </li>
+          )
         })}
 
         <div

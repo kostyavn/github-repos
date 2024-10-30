@@ -44,6 +44,7 @@ export const useRepositoryListModel = () => {
         cursors[currentPage] = pageInfo.endCursor
         localStorage.setItem('cursors', JSON.stringify(cursors))
       }
-    }
+    },
+    fetchPolicy: 'network-only'
   })
 }
