@@ -1,3 +1,1 @@
-export namespace Repository {
-    
-}
+export namespace Repository {}
