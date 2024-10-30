@@ -18,13 +18,13 @@ const rootRoute = createRootRoute({
 
 const repositoriesListRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/repository-list',
+  path: 'repository-list',
   component: RepositoryListPage
 })
 
 const repositoryIdRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/repository-id/$repoId',
+  path: 'repository-id/$repoId',
   component: RepositoryIdPage
 })
 
