@@ -29,10 +29,7 @@ const style = cva('transition-colors', {
 
 type IconStyle = VariantProps<typeof style>
 
-
-export type IconType =
-  | `solid/${keyof typeof HeroIconsSolid}`
-  | `outline/${keyof typeof HeroIconsOutline}`
+export type IconType = `solid/${keyof typeof HeroIconsSolid}` | `outline/${keyof typeof HeroIconsOutline}`
 
 export interface IIconProps extends IconStyle, Omit<SVGProps<SVGSVGElement>, 'ref' | 'iconWidth' | 'size'> {
   /**
@@ -57,26 +54,14 @@ export const Icon: FC<IIconProps> = props => {
   if (heroIconsPackage && heroIcon) {
     if (heroIconsPackage === 'solid') {
       const Icon = HeroIconsSolid[heroIcon as keyof typeof HeroIconsSolid]
-      return (
-        <Icon
-          className={(cx(style({ size, iconWidth,  withScale }), className))}
-          data-testid={testId}
-          {...rest}
-        />
-      )
+      return <Icon className={cx(style({ size, iconWidth, withScale }), className)} data-testid={testId} {...rest} />
     }
 
     if (heroIconsPackage === 'outline') {
       const Icon = HeroIconsOutline[heroIcon as keyof typeof HeroIconsOutline]
-      return (
-        <Icon
-          className={cx(style({ size, iconWidth,  withScale }), className)}
-          data-testid={testId}
-          {...rest}
-        />
-      )
+      return <Icon className={cx(style({ size, iconWidth, withScale }), className)} data-testid={testId} {...rest} />
     }
   }
 }
 
-export {  HeroIconsSolid, HeroIconsOutline }
+export { HeroIconsSolid, HeroIconsOutline }
