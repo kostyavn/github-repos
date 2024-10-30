@@ -18,7 +18,7 @@ type RepositoryListResponse = {
   }
 }
 
-export const useRepositoriesListModel = () => {
+export const useRepositoryListModel = () => {
   const setRepositoryList = useRepositoryListStore(state => state.setRepositoryList)
 
   return useQuery<RepositoryListResponse>(api.query.REPOSITORIES_LIST, {

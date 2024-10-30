@@ -2,6 +2,7 @@ export namespace Repository {
   export type Owner = {
     login: string
     avatarUrl: string
+    url: string
   }
 
   export type PrimaryLanguage = {
@@ -26,5 +27,8 @@ export namespace Repository {
     setRepositoryList: (repositoryList: Array<Node>) => void
   }
 
-  export type Store = {}
+  export type Store = {
+    repository: Nullable<Node>
+    setRepository: (repository: Node) => void
+  }
 }

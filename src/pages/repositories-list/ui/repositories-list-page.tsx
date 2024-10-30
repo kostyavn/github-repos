@@ -1,14 +1,14 @@
 import { isEmpty } from 'ramda'
 import { type FC } from 'react'
 
-import { useRepositoriesListModel, useRepositoryListStore, RepositoryCard } from '@entities/repository'
+import { useRepositoryListModel, useRepositoryListStore, RepositoryCard } from '@entities/repository'
 
 import { Loader, Result } from '@shared/elements/ui'
 
 export interface IRepositoriesListPageProps {}
 
 export const RepositoriesListPage: FC<IRepositoriesListPageProps> = () => {
-  const { loading, error } = useRepositoriesListModel()
+  const { loading, error } = useRepositoryListModel()
   const repositoryList = useRepositoryListStore(state => state.repositoryList)
 
   const shouldRender = !loading && !error

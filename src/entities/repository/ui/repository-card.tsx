@@ -1,9 +1,11 @@
+import { Link, useNavigate } from '@tanstack/react-router'
 import { cx } from 'class-variance-authority'
-import { type FC } from 'react'
 import dayjs from 'dayjs'
+import { type FC } from 'react'
 
 import { Icon } from '@shared/elements/svg'
 import { Avatar } from '@shared/elements/ui'
+import { DEFAULT_DATE_FORMAT } from '@shared/lib/constants'
 import { type HtmlDivProps } from '@shared/types/html'
 
 import { type Repository } from '../types'
@@ -16,11 +18,15 @@ export interface IRepositoryCardProps extends Omit<HtmlDivProps, 'className'> {
 export const RepositoryCard: FC<IRepositoryCardProps> = props => {
   const { containerClassName, repository, ...restContainerProps } = props
 
-  const { name, stargazerCount, updatedAt, url, owner, primaryLanguage } = repository
+  const { id, name, stargazerCount, updatedAt, url, owner, primaryLanguage } = repository
 
-  const { login, avatarUrl } = owner
+  const { login, avatarUrl, url: ownderUrl } = owner
 
-  const lastCommitDate = dayjs(updatedAt).format('D MMMM YYYY, HH:mm')
+  const lastCommitDate = dayjs(updatedAt).format(DEFAULT_DATE_FORMAT)
+
+  const handleNavigateToAuthorGithubPage = () => {
+    window.location.href = ownderUrl
+  }
 
   return (
     <div
@@ -30,7 +36,7 @@ export const RepositoryCard: FC<IRepositoryCardProps> = props => {
       )}
       {...restContainerProps}
     >
-      <div className={'flex-center gap-x-2'}>
+      <div className={'flex-center gap-x-2'} onClick={handleNavigateToAuthorGithubPage}>
         <Avatar className={'h-8 w-8 cursor-pointer'} src={avatarUrl} />
         <p className={'cursor-pointer hover:underline hover:underline-offset-2'}>{login}</p>
       </div>
@@ -43,13 +49,17 @@ export const RepositoryCard: FC<IRepositoryCardProps> = props => {
 
       <div>
         <p>Repository name:</p>
-        <a className={'cursor-pointer text-blue-500 hover:underline hover:underline-offset-2'} href={url}>
+        <Link
+          className={'cursor-pointer text-blue-500 hover:underline hover:underline-offset-2'}
+          params={{ repoId: id }}
+          to={'/repository-id/$repoId'}
+        >
           {name}
-        </a>
+        </Link>
       </div>
 
       {primaryLanguage && (
-        <div >
+        <div>
           <p>Primary language:</p>
           <p>{primaryLanguage?.name || ''}</p>
         </div>
@@ -59,6 +69,15 @@ export const RepositoryCard: FC<IRepositoryCardProps> = props => {
         <p>Last commit:</p>
         <p>{lastCommitDate}</p>
       </div>
+
+      <a
+        className={'cursor-pointer text-blue-500 hover:underline hover:underline-offset-2'}
+        href={url}
+        rel="noreferrer"
+        target={'_blank'}
+      >
+        GitHub Link
+      </a>
     </div>
   )
 }

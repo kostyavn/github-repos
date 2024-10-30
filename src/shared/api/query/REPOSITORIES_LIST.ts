@@ -15,6 +15,7 @@ export const REPOSITORIES_LIST = gql`
             owner {
               login
               avatarUrl
+              url
             }
             primaryLanguage {
               name

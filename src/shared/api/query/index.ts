@@ -1,5 +1,7 @@
 import { REPOSITORIES_LIST } from './REPOSITORIES_LIST'
+import { REPOSITORY_BY_ID } from './REPOSITORY_BY_ID'
 
 export const query = {
-  REPOSITORIES_LIST
+  REPOSITORIES_LIST,
+  REPOSITORY_BY_ID
 }
