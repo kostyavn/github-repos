@@ -31,7 +31,7 @@ export const RepositoryIdPage: FC<IRepositoryIdPageProps> = () => {
       {shouldRender && (
         <Link
           className={'cursor-pointer text-blue-500 hover:underline hover:underline-offset-2'}
-          to={'/repositories-list'}
+          to={'/repository-list'}
         >
           Get back
         </Link>

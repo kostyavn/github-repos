@@ -11,12 +11,12 @@ export interface IApplicationProps {}
 export const Application: FC<IApplicationProps> = () => {
   return (
     <ApplicationProvider>
-      <ErrorBoundary fallback={'error'}>
-        <main className={'flex flex-1 flex-col'}>
-          <Header />
+      <main className={'flex flex-1 flex-col'}>
+        <Header />
+        <ErrorBoundary fallback={'error'}>
           <Outlet />
-        </main>
-      </ErrorBoundary>
+        </ErrorBoundary>
+      </main>
     </ApplicationProvider>
   )
 }
