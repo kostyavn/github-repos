@@ -4,7 +4,6 @@ import dayjs from 'dayjs'
 import { type FC } from 'react'
 
 import { Icon } from '@shared/elements/svg'
-import { Avatar } from '@shared/elements/ui'
 import { DEFAULT_DATE_FORMAT } from '@shared/lib/constants'
 import { type HtmlDivProps } from '@shared/types/html'
 
@@ -18,15 +17,9 @@ export interface IRepositoryCardProps extends Omit<HtmlDivProps, 'className'> {
 export const RepositoryCard: FC<IRepositoryCardProps> = props => {
   const { containerClassName, repository, ...restContainerProps } = props
 
-  const { id, name, stargazerCount, updatedAt, url, owner, primaryLanguage } = repository
-
-  const { login, avatarUrl, url: ownderUrl } = owner
+  const { id, name, stargazerCount, updatedAt, url, primaryLanguage } = repository
 
   const lastCommitDate = dayjs(updatedAt).format(DEFAULT_DATE_FORMAT)
-
-  const handleNavigateToAuthorGithubPage = () => {
-    window.location.href = ownderUrl
-  }
 
   return (
     <div
@@ -36,11 +29,6 @@ export const RepositoryCard: FC<IRepositoryCardProps> = props => {
       )}
       {...restContainerProps}
     >
-      <div className={'flex-center gap-x-2'} onClick={handleNavigateToAuthorGithubPage}>
-        <Avatar className={'h-8 w-8 cursor-pointer'} src={avatarUrl} />
-        <p className={'cursor-pointer hover:underline hover:underline-offset-2'}>{login}</p>
-      </div>
-
       <div className={'flex-center gap-x-2'}>
         <p>Stars:</p>
         <p>{stargazerCount}</p>

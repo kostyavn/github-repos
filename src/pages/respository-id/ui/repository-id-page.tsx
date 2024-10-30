@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import dayjs from 'dayjs'
+import { isEmpty } from 'ramda'
 import { type FC } from 'react'
 
 import { useRepositoryModel, useRepositoryStore } from '@entities/repository'
@@ -57,13 +58,6 @@ export const RepositoryIdPage: FC<IRepositoryIdPageProps> = () => {
             <p>{repository.name}</p>
           </div>
 
-          {repository.primaryLanguage && (
-            <div>
-              <p>Primary language:</p>
-              <p>{repository.primaryLanguage?.name || ''}</p>
-            </div>
-          )}
-
           <div>
             <p>Last commit:</p>
             <p>{dayjs(repository.updatedAt).format(DEFAULT_DATE_FORMAT)}</p>
@@ -77,6 +71,20 @@ export const RepositoryIdPage: FC<IRepositoryIdPageProps> = () => {
           >
             GitHub Link
           </a>
+
+          {repository.primaryLanguage && (
+            <div className={'flex-center gap-x-2'}>
+              <p>Primary language:</p>
+              <p>{repository.primaryLanguage?.name || ''}</p>
+            </div>
+          )}
+
+          {!isEmpty(repository.languages.edges) && (
+            <div className={'flex-center gap-x-2'}>
+              <p>Languages:</p>
+              <p>{repository.languages.edges.map(edge => edge.node.name).join(', ')}</p>
+            </div>
+          )}
 
           {repository.description && (
             <div>

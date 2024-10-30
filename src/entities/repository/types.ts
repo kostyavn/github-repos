@@ -10,6 +10,7 @@ export namespace Repository {
   }
 
   export type Language = {
+    id: string
     name: string
   }
 

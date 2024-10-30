@@ -41,8 +41,6 @@ export const RepositoryListPage: FC<IRepositoryListPageProps> = () => {
       localStorage.setItem('searchQuery', searchQuery || '')
       localStorage.setItem('currentPage', '1')
       localStorage.setItem('cursors', '{}')
-
-      setCurrentPage(1)
     },
     300,
     [searchQuery]
