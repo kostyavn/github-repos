@@ -6,9 +6,7 @@ const outlinedIconNames = Object.keys(HeroIconsOutline)
 const solidIconNames = Object.keys(HeroIconsSolid)
 const iconOptions = [...solidIconNames, ...outlinedIconNames]
 
-const IconsPreviewComponent: FC<IIconProps> = props => {
-  const { icon } = props
-
+const IconsPreviewComponent: FC<IIconProps> = () => {
   //   const filteredIcons = iconOptions?.filter(iconName => iconName?.toLowerCase()?.includes(icon?.toLowerCase()))
 
   const copyToClipboard = async (text: string) => {

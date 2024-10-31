@@ -27,7 +27,17 @@ export const RepositoryIdPage: FC<IRepositoryIdPageProps> = () => {
     <section className={'page-wrapper flex flex-col gap-y-3'}>
       {loading && <Loader />}
 
-      {error && <Result message={<h1 className={'text-red-500'}>Something went wrong...</h1>} type={'error'} />}
+      {error && (
+        <Result
+          type={'error'}
+          message={
+            <div className={'flex-center flex-col gap-y-2'}>
+              <h1 className={'text-red-500'}>Something went wrong...</h1>
+              <h1 className={'text-red-500'}>{error.message}</h1>
+            </div>
+          }
+        />
+      )}
 
       {shouldRender && (
         <Link

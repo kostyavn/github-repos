@@ -59,7 +59,17 @@ export const RepositoryListPage: FC<IRepositoryListPageProps> = () => {
 
       {loading && <Loader />}
 
-      {error && <Result message={<h1 className={'text-red-500'}>Something went wrong...</h1>} type={'error'} />}
+      {error && (
+        <Result
+          type={'error'}
+          message={
+            <div className={'flex-center flex-col gap-y-2'}>
+              <h1 className={'text-red-500'}>Something went wrong...</h1>
+              <h1 className={'text-red-500'}>{error.message}</h1>
+            </div>
+          }
+        />
+      )}
 
       {isEmpty(repositoryList) && shouldRender && (
         <Result message={<h1>Repositories not found...</h1>} type={'empty'} />
